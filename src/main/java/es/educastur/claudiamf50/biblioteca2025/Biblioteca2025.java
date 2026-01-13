@@ -4,6 +4,7 @@
 
 package es.educastur.claudiamf50.biblioteca2025;
 
+import static es.educastur.claudiamf50.biblioteca2025.Biblioteca2025.cargaDatosPrueba12;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,11 +16,14 @@ public class Biblioteca2025 {
      private static ArrayList <Libro> libros;
      private static ArrayList <Usuario> usuarios;
      private static ArrayList <Prestamo> prestamos;
-     private static ArrayList <Prestamo> prestamos=new ArrayList();
+     private static ArrayList <Prestamo>prestamos=new ArrayList();
      private static ArrayList <Prestamo>prestamosHist=new ArrayList();        
 
     public static void main(String[] args) {
         cargaDatos();
+        cargaDatosPrueba12-12();
+        
+          
         
         
         
@@ -220,12 +224,47 @@ public class Biblioteca2025 {
         }while (opcion != 9); 
     }
 
-    public static void buscaprestamo(String dni, String isbn){
-        
+    public static void cargaDatosPrueba12-12() {
+        libros.add(new Libro("1-11", "El Hobbit", "JRR Tolkien", "Aventuras", 3));
+        libros.add(new Libro("1-22", "El Silmarillon", "JRR Tolkien", "Aventuras", 3));
+        libros.add(new Libro("1-33", "El Medico", "N. Gordon", "Aventuras", 4));
+        libros.add(new Libro("1-44", "Chaman", "N. Gordon", "Aventuras", 3));
+        libros.add(new Libro("1-55", "Momo", "M. Ende", "Aventuras", 2));
+        libros.add(new Libro("1-66", "Paraiso inhabitado", "A.M.Matute", "Aventuras", 2));
+        libros.add(new Libro("1-77", "Olvidado Rey Gudu", "A.M.Matute", "Aventuras", 0));
+        libros.add(new Libro("1-88", "El ultimo barco", "D.Villar", "Novela Negra", 3));
+        libros.add(new Libro("1-99", "Ojos de agua", "D.Villar", "Novela Negra", 0));
+
+        usuarios.add(new Usuario("11", "Ana", "ana@email.com", "621111111"));
+        usuarios.add(new Usuario("22", "David", "david@email.com", "622222222"));
+        usuarios.add(new Usuario("33", "Bea", "bea@email.com", "623333333"));
+        usuarios.add(new Usuario("44", "Lucas", "lucas@email.com", "624444444"));
+        usuarios.add(new Usuario("55", "Carlota", "carlota@email.com", "625555555"));
+        usuarios.add(new Usuario("66", "Juan", "juan@email.com", "626666666"));
+
+        LocalDate hoy = LocalDate.now(); //OBTENEMOS LA FECHA DE HOY CON EL MÉTODO now()
+
+        //PRESTAMOS "NORMALES" REALIZADOS HOY Y QUE SE HAN DE DEVOLVER EN 15 DÍAS
+        prestamos.add(new Prestamo(libros.get(0), usuarios.get(0), hoy, hoy.plusDays(15)));
+        prestamos.add(new Prestamo(libros.get(1), usuarios.get(0), hoy, hoy.plusDays(15)));
+        prestamos.add(new Prestamo(libros.get(5), usuarios.get(0), hoy, hoy.plusDays(15)));
+        prestamos.add(new Prestamo(libros.get(0), usuarios.get(4), hoy, hoy.plusDays(15)));
+        prestamos.add(new Prestamo(libros.get(0), usuarios.get(1), hoy, hoy.plusDays(15)));
+        //PRESTAMOS QUE YA TENIAN QUE HABER SIDO DEVUELTOS PORQUE SU FECHA DE DEVOLUCIÓN ES ANTERIOR A HOY
+        prestamos.add(new Prestamo(libros.get(5), usuarios.get(1), hoy.minusDays(17), hoy.minusDays(2)));
+        prestamos.add(new Prestamo(libros.get(1), usuarios.get(4), hoy.minusDays(18), hoy.minusDays(3)));
+        prestamos.add(new Prestamo(libros.get(2), usuarios.get(4), hoy.minusDays(20), hoy.minusDays(5)));
+        prestamos.add(new Prestamo(libros.get(3), usuarios.get(4), hoy.minusDays(20), hoy.minusDays(5)));
+
+        //PRESTAMOS HISTORICOS QUE YA HAN SIDO DEVUELTOS Y POR TANTO ESTÁN EN LA COLECCION prestamosHist
+        prestamosHist.add(new Prestamo(libros.get(0), usuarios.get(0), hoy.minusDays(30), hoy.minusDays(15)));
+        prestamosHist.add(new Prestamo(libros.get(2), usuarios.get(0), hoy.minusDays(30), hoy.minusDays(15)));
+        prestamosHist.add(new Prestamo(libros.get(7), usuarios.get(4), hoy.minusDays(30), hoy.minusDays(15)));
+        prestamosHist.add(new Prestamo(libros.get(5), usuarios.get(4), hoy.minusDays(20), hoy.minusDays(15)));
+        prestamosHist.add(new Prestamo(libros.get(1), usuarios.get(1), hoy.minusDays(20), hoy.minusDays(5)));
+        prestamosHist.add(new Prestamo(libros.get(7), usuarios.get(2), hoy.minusDays(10), hoy));
+        prestamosHist.add(new Prestamo(libros.get(6), usuarios.get(3), hoy.minusDays(10), hoy));
     }
-
-
-    
     
     
 
