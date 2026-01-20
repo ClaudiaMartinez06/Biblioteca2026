@@ -20,13 +20,33 @@ public class Biblioteca2025 {
      private static ArrayList <Prestamo>prestamosHist=new ArrayList();        
 
     public static void main(String[] args) {
-        cargaDatos();
-        cargaDatosPrueba12-12();
+        //cargaDatos();
+       // cargaDatosPrueba12-12();
+       //ListadoConStreams();
+      // ordenarConStreams();
+      
+             
+    }
+    public static void ListadoConStreams(){
+        libros.stream().forEach(l->System.out.println (l));
+        usuarios.stream().forEach(u->System.out.println (u));
+        prestamos.stream().forEach(p->System.out.println(p));
+        prestamos.stream().forEach (p->System.out.println (p));
         
-          
+    }
+    public static void ordenarConStreams(){
+        System.out.println("Listado de libros ordenados alfabeticamente por titulos:");
+       
+        System.out.println("Listado de libros ordenados alfabeticamente por titulod");
         
-        
-        
+    }
+    public static int numPrestamosLibros(String isnb){
+       int cont=0;
+       for (Prestamos p : prestamos){
+           if (p.getLibrosPrest().getIsbn().equaalsIgnoreCase(isbn)){
+               cont++; 
+           }
+       } 
     }
 
     public static void cargaDatos() {
